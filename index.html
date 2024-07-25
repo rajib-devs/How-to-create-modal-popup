@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  color: black;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modalBtn {
+  cursor: pointer;
+}
+
+.modalBtn:hover {
+  text-decoration: underline; 
+}
+</style>
+</head>
+<body>
+
+<h2>Multiple Modals Example</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="bioModalBtn1" class="modalBtn">Open Modal 1</button>
+<button id="bioModalBtn2" class="modalBtn">Open Modal 2</button>
+<button id="bioModalBtn3" class="modalBtn">Open Modal 3</button>
+<!-- Add more buttons as needed -->
+
+<!-- The Modals -->
+<div id="bioModal1" class="modal">
+  <div class="modal-content">
+    <span class="close" data-modal-id="bioModal1">&times;</span>
+    <p>Some text in the Modal 1..</p>
+  </div>
+</div>
+
+<div id="bioModal2" class="modal">
+  <div class="modal-content">
+    <span class="close" data-modal-id="bioModal2">&times;</span>
+    <p>Some text in the Modal 2..</p>
+  </div>
+</div>
+
+<div id="bioModal3" class="modal">
+  <div class="modal-content">
+    <span class="close" data-modal-id="bioModal3">&times;</span>
+    <p>Some text in the Modal 3..</p>
+  </div>
+</div>
+
+<!-- Add more modals as needed -->
+
+<script>
+// Function to handle opening of modal
+function openModal(modalId) {
+  var modal = document.getElementById(modalId);
+  modal.style.display = "block";
+}
+
+// Function to handle closing of modal
+function closeModal(modalId) {
+  var modal = document.getElementById(modalId);
+  modal.style.display = "none";
+}
+
+// Add event listeners to buttons
+var buttons = document.getElementsByClassName('modalBtn');
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', function() {
+    var modalId = this.id.replace('Btn', '');
+    openModal(modalId);
+  });
+}
+
+// Add event listeners to close buttons
+var spans = document.getElementsByClassName('close');
+for (var i = 0; i < spans.length; i++) {
+  spans[i].addEventListener('click', function() {
+    var modalId = this.getAttribute('data-modal-id');
+    closeModal(modalId);
+  });
+}
+
+// Add event listener to close modal when clicking outside of it
+window.addEventListener('click', function(event) {
+  var modals = document.getElementsByClassName('modal');
+  for (var i = 0; i < modals.length; i++) {
+    if (event.target == modals[i]) {
+      modals[i].style.display = "none";
+    }
+  }
+});
+</script>
+
+</body>
+</html>
